@@ -1,9 +1,15 @@
 package com.example.todo.services;
 
-import com.example.todo.domain.masterDomain.MasterBrandNameEntry;
+import com.example.todo.domain.liquorMasterDomain.MasterBrandNameEntry;
+
+import java.util.List;
 
 public interface MasterBrandEntryService {
     MasterBrandNameEntry savMasterBrandNameEntry(MasterBrandNameEntry masterBrandNameEntry);
 
-    void findAll();
+    List<MasterBrandNameEntry> findAll();
+
+    MasterBrandNameEntry getBrandById(Long id);
+
+    Boolean deleteBrandById(Long id);
 }
