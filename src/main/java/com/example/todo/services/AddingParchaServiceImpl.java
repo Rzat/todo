@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -28,7 +27,8 @@ public class AddingParchaServiceImpl implements AddingParchaService {
     @Override
     @Transactional
     public AddingParcha saveParcha(AddingParcha parcha) {
-        Optional<AddingParcha> optionalAddingParcha = Optional.of(parcha);
+        return parchaRepo.save(parcha);
+       /* Optional<AddingParcha> optionalAddingParcha = Optional.of(parcha);
         if (optionalAddingParcha.isPresent()) {
             AddingParcha addingParcha = optionalAddingParcha.get();
             //addingParcha.setBrandName(parcha.getBrandName());
@@ -41,7 +41,7 @@ public class AddingParchaServiceImpl implements AddingParchaService {
         } else {
             log.error("Parcha not found");
             return new AddingParcha();
-        }
+        }*/
 
     }
 }
