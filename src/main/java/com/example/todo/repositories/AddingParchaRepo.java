@@ -9,4 +9,6 @@ public interface AddingParchaRepo extends JpaRepository<AddingParcha, Long> {
     Optional<AddingParcha> findByShopName(String purchaseFrom);
 
     Optional<AddingParcha> findAllByShopName(String purchaseFrom);
+
+    Optional<AddingParcha> findByShopNameAndBrandName(String shopName, String brandName);
 }

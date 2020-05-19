@@ -51,15 +51,20 @@ public class DailyPurchaseServiceImpl implements DailyPurchaseService {
         order.setDailyPurchase(dailyPurchase);*/
         String purchaseFrom = purchase.getPurchaseFrom();
         String purchaseTo = purchase.getPurchaseTo();
+
         System.out.println("purchase from" + purchaseFrom);
         System.out.println("purchase To" + purchaseTo);
-        AddingParcha parchaFrom = addingParchaRepo.findByShopName(purchaseFrom).orElseThrow(NotFoundException::new);
-        AddingParcha parchaTo = addingParchaRepo.findByShopName(purchaseTo).orElseThrow(NotFoundException::new);
+
 
         for (Orders orders : purchase.getOrders()) {
+            AddingParcha parchaFrom = addingParchaRepo.findByShopNameAndBrandName(purchaseFrom, orders.getBrandName())
+                    .orElseThrow(NotFoundException::new);
+            AddingParcha parchaTo = addingParchaRepo.findByShopNameAndBrandName(purchaseTo, orders.getBrandName())
+                    .orElseThrow(NotFoundException::new);
+
             if (parchaFrom.getBrandName().equals(orders.getBrandName()) &&
                     parchaTo.getBrandName().equals(orders.getBrandName())) {
-                // TODO: 5/19/2020 findByShopNameAndBrandName
+                // TODO: 5/19/2020 findByShopNameAndBrandName ---> done
                 updateParcha2(parchaFrom, orders, parchaTo);
             } else {
                 // TODO: 5/19/2020
