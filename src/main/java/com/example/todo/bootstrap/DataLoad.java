@@ -37,6 +37,18 @@ public class DataLoad implements CommandLineRunner {
                 .packing3(48)
                 .build());
 
+        MasterBrandNameEntry mb2 = masterBrandEntryRepo.save(MasterBrandNameEntry.builder()
+                .id(1L)
+                .brandName("Orange")
+                .brandType(BrandType.ENGLISH)
+                .changedName("Iphone")
+                .brandCategoryName("Electronics")
+                .brandCompanyName("Apple")
+                .packing1(12)
+                .packing2(24)
+                .packing3(48)
+                .build());
+
         parchaRepo.save(AddingParcha.builder()
                 .id(1L)
                 .numbr(10)
@@ -59,6 +71,17 @@ public class DataLoad implements CommandLineRunner {
                 //   .masterBrandNameEntry(mb)
                 .build());
 
+        parchaRepo.save(AddingParcha.builder()
+                .id(3L)
+                .numbr(10)
+                .shopName("abc Tech")
+                .nips(30)
+                .pints(20)
+                .brandName(mb2.getBrandName())
+                .quarts(10)
+                //   .masterBrandNameEntry(mb)
+                .build());
+
         masterShopEntryRepo.save(MasterShopEntry.builder()
                 .id(1L)
                 .groupS("Abc")
@@ -69,6 +92,8 @@ public class DataLoad implements CommandLineRunner {
                 .shopNumber(12)
                 .shopName("abc Tech")
                 .build());
+
+
 //
 //        dailyPurchaseRpo.save(DailyPurchase.builder()
 //                .id(1L)

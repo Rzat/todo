@@ -59,6 +59,7 @@ public class DailyPurchaseServiceImpl implements DailyPurchaseService {
         for (Orders orders : purchase.getOrders()) {
             if (parchaFrom.getBrandName().equals(orders.getBrandName()) &&
                     parchaTo.getBrandName().equals(orders.getBrandName())) {
+                // TODO: 5/19/2020 findByShopNameAndBrandName
                 updateParcha2(parchaFrom, orders, parchaTo);
             } else {
                 // TODO: 5/19/2020

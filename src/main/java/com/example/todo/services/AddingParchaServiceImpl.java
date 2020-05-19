@@ -27,11 +27,18 @@ public class AddingParchaServiceImpl implements AddingParchaService {
     @Override
     @Transactional
     public AddingParcha saveParcha(AddingParcha parcha) {
-        return parchaRepo.save(parcha);
-       /* Optional<AddingParcha> optionalAddingParcha = Optional.of(parcha);
+        AddingParcha addingParcha = new AddingParcha();
+        addingParcha.setBrandName(parcha.getBrandName());
+        addingParcha.setNumbr(parcha.getNumbr());
+        addingParcha.setQuarts(parcha.getQuarts());
+        addingParcha.setPints(parcha.getPints());
+        addingParcha.setNips(parcha.getNips());
+        addingParcha.setShopName(parcha.getShopName());
+        return parchaRepo.save(addingParcha);
+      /*  Optional<AddingParcha> optionalAddingParcha = Optional.of(parcha);
         if (optionalAddingParcha.isPresent()) {
             AddingParcha addingParcha = optionalAddingParcha.get();
-            //addingParcha.setBrandName(parcha.getBrandName());
+            addingParcha.setBrandName(parcha.getBrandName());
             addingParcha.setNumbr(parcha.getNumbr());
             addingParcha.setQuarts(parcha.getQuarts());
             addingParcha.setPints(parcha.getPints());
