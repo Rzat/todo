@@ -1,22 +1,22 @@
 package com.example.todo.domain.liquorMasterDomain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 @Entity
-@Data
+//@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Builder
+@JsonInclude(JsonInclude.Include.NON_DEFAULT)
 public class DailyPurchase {
 
 
@@ -29,10 +29,21 @@ public class DailyPurchase {
     private String purchaseTo;
     private Date date;
     private Size size;
-    private String brandName;
-    private int quarts;
-    private int pints;
-    private int nips;
+    /* private String brandName;
+     private int quarts;
+     private int pints;
+     private int nips;
+ */
+    @OneToMany(mappedBy = "dailyPurchase", cascade = CascadeType.ALL)
+    private List<Orders> orders = new ArrayList<>();
 
+
+    public DailyPurchase addOrders2(List<Orders> orders) {
+        for (Orders order : orders) {
+            order.setDailyPurchase(this);
+        }
+        this.orders = orders;
+        return this;
+    }
 
 }
