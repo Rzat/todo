@@ -19,6 +19,7 @@ public class DataLoad implements CommandLineRunner {
     private final MasterShopEntryRepo masterShopEntryRepo;
     private final DailyPurchaseRpo dailyPurchaseRpo;
 
+
     @Override
     public void run(String... args) throws Exception {
         loadMaster();
@@ -92,17 +93,6 @@ public class DataLoad implements CommandLineRunner {
                 .shopNumber(12)
                 .shopName("abc Tech")
                 .build());
-
-
-//
-//        dailyPurchaseRpo.save(DailyPurchase.builder()
-//                .id(1L)
-//                .purchaseCode("1")
-//                .date(new Date())
-//                .purchaseFrom("abc Tech")
-//                .purchaseTo("Testing2")
-//                .size(Size.BOTTLE)
-//                .build());
 
         DailyPurchase dailyPurchase = new DailyPurchase();
         dailyPurchase.setId(1L);

@@ -16,8 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Builder
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
-public class DailyPurchase {
-
+public class IssueStock {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,17 +27,17 @@ public class DailyPurchase {
     private String purchaseTo;
     private Date date;
     private Size size;
+    @OneToMany(mappedBy = "issueStock", cascade = CascadeType.ALL)
+    private List<IssueStockPurchase> orders = new ArrayList<>();
 
-    @OneToMany(mappedBy = "dailyPurchase", cascade = CascadeType.ALL)
-    private List<Orders> orders = new ArrayList<>();
 
-
-    public DailyPurchase addOrders2(List<Orders> orders) {
-        for (Orders order : orders) {
-            order.setDailyPurchase(this);
+    public IssueStock addOrders2(List<IssueStockPurchase> orders) {
+        for (IssueStockPurchase order : orders) {
+            order.setIssueStock(this);
         }
         this.orders = orders;
         return this;
     }
 
 }
+

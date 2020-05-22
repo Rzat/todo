@@ -17,13 +17,6 @@ public class DailyPurchaseController {
 
     private final DailyPurchaseService service;
 
-    @PostMapping("/users/{username}/dailyPurchase")
-    public ResponseEntity<DailyPurchase> dailyPurchase(@PathVariable String username, @RequestBody DailyPurchase purchase) {
-        service.saveDailyPurchase(purchase);
-        System.out.println(purchase);
-
-        return new ResponseEntity<DailyPurchase>(HttpStatus.CREATED);
-    }
 
     @GetMapping("/users/{username}/dailyPurchase")
     public ResponseEntity<List<DailyPurchase>> getAll(@PathVariable String username) {
@@ -32,7 +25,7 @@ public class DailyPurchaseController {
     }
 
     @PostMapping("/users/{username}/saveDailyPurchase")
-    public ResponseEntity<DailyPurchase> saveDailyPurchase(@PathVariable String username, @RequestBody DailyPurchase purchase) {
+    public ResponseEntity<DailyPurchase> saveDailyPurchase(@PathVariable String username, @RequestBody DailyPurchase purchase) throws Exception {
         // service.saveDailyPurchase(purchase);
         System.out.println(purchase);
         service.newSaveDailyPurchase(purchase);
