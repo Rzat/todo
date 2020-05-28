@@ -26,4 +26,10 @@ public class AddingParchaController {
         parchaService.saveParcha(parcha);
         return new ResponseEntity<AddingParcha>(HttpStatus.CREATED);
     }
+
+    @GetMapping("/users/{username}/findByShopName/{shopName}")
+    public ResponseEntity<List<AddingParcha>> findByShopName(@PathVariable String username, @PathVariable String shopName) {
+
+        return new ResponseEntity<List<AddingParcha>>(parchaService.findByShopName(shopName), HttpStatus.OK);
+    }
 }

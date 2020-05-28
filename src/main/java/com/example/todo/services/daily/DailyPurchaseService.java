@@ -1,6 +1,6 @@
-package com.example.todo.services;
+package com.example.todo.services.daily;
 
-import com.example.todo.domain.liquorMasterDomain.DailyPurchase;
+import com.example.todo.domain.liquorMasterDomain.daily.DailyPurchase;
 
 import java.util.List;
 

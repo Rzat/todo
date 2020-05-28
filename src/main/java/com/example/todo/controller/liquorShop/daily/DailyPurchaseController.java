@@ -1,8 +1,8 @@
-package com.example.todo.controller.liquorShop;
+package com.example.todo.controller.liquorShop.daily;
 
 
-import com.example.todo.domain.liquorMasterDomain.DailyPurchase;
-import com.example.todo.services.DailyPurchaseService;
+import com.example.todo.domain.liquorMasterDomain.daily.DailyPurchase;
+import com.example.todo.services.daily.DailyPurchaseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

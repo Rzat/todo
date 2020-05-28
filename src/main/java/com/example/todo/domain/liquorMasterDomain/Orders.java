@@ -1,6 +1,7 @@
 package com.example.todo.domain.liquorMasterDomain;
 
 
+import com.example.todo.domain.liquorMasterDomain.daily.DailyPurchase;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;

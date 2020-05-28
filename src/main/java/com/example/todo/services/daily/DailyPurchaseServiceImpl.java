@@ -1,11 +1,13 @@
-package com.example.todo.services;
+package com.example.todo.services.daily;
 
 import com.example.todo.controller.liquorShop.NotFoundException;
 import com.example.todo.domain.liquorMasterDomain.AddingParcha;
-import com.example.todo.domain.liquorMasterDomain.DailyPurchase;
 import com.example.todo.domain.liquorMasterDomain.Orders;
+import com.example.todo.domain.liquorMasterDomain.daily.DailyPurchase;
+import com.example.todo.domain.liquorMasterDomain.daily.DailySale;
 import com.example.todo.repositories.AddingParchaRepo;
 import com.example.todo.repositories.DailyPurchaseRpo;
+import com.example.todo.repositories.daily.DailySaleRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,7 @@ public class DailyPurchaseServiceImpl implements DailyPurchaseService {
 
     private final AddingParchaRepo addingParchaRepo;
     private final DailyPurchaseRpo dailyPurchaseRpo;
+    private final DailySaleRepo dailySaleRepo;
 
 
     @Override
@@ -35,8 +38,22 @@ public class DailyPurchaseServiceImpl implements DailyPurchaseService {
         dailyPurchase.setPurchaseTo(purchase.getPurchaseTo());
         dailyPurchase.setDate(purchase.getDate());
         dailyPurchase.addOrders2(purchase.getOrders());
+
+        //loop for multiple orders
         addingLoop(purchase);
         dailyPurchaseRpo.save(dailyPurchase);
+
+
+        for (Orders orders : purchase.getOrders()) {
+            System.out.println(dailySaleRepo.findByShopNameAndBrandName(purchase.getPurchaseTo(), orders.getBrandName()));
+            DailySale sale = dailySaleRepo.findByShopNameAndBrandName(purchase.getPurchaseTo(), orders.getBrandName());
+            sale.setOpeningQuarts(orders.getQuarts());
+            sale.setOpeningPints(orders.getPints());
+            sale.setOpeningNips(orders.getNips());
+            dailySaleRepo.save(sale);
+        }
+
+
     }
 
     private void addingLoop(DailyPurchase purchase) {
@@ -52,7 +69,7 @@ public class DailyPurchaseServiceImpl implements DailyPurchaseService {
                     parchaTo.getBrandName().equals(orders.getBrandName())) {
                 updateParcha2(parchaFrom, orders, parchaTo);
             } else {
-                // TODO: 5/19/2020
+                // TODO: 5/19/2020 handle exception gracefully
                 System.out.println("BrandnameNot found" + orders.getBrandName());
             }
         }

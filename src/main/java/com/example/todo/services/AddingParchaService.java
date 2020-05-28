@@ -8,4 +8,6 @@ public interface AddingParchaService {
     List<AddingParcha> findAll();
 
     AddingParcha saveParcha(AddingParcha parcha);
+
+    List<AddingParcha> findByShopName(String shopName);
 }

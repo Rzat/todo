@@ -1,10 +1,13 @@
 package com.example.todo.bootstrap;
 
 import com.example.todo.domain.liquorMasterDomain.*;
+import com.example.todo.domain.liquorMasterDomain.daily.DailyPurchase;
+import com.example.todo.domain.liquorMasterDomain.daily.DailySale;
 import com.example.todo.repositories.AddingParchaRepo;
 import com.example.todo.repositories.DailyPurchaseRpo;
 import com.example.todo.repositories.MasterBrandEntryRepo;
 import com.example.todo.repositories.MasterShopEntryRepo;
+import com.example.todo.repositories.daily.DailySaleRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -18,6 +21,7 @@ public class DataLoad implements CommandLineRunner {
     private final AddingParchaRepo parchaRepo;
     private final MasterShopEntryRepo masterShopEntryRepo;
     private final DailyPurchaseRpo dailyPurchaseRpo;
+    private final DailySaleRepo dailySaleRepo;
 
 
     @Override
@@ -103,6 +107,19 @@ public class DataLoad implements CommandLineRunner {
         dailyPurchase.getOrders().add(new Orders("Orange", 122, 133, 155, dailyPurchase));
         dailyPurchase.getOrders().add(new Orders("Apple", 123, 134, 156, dailyPurchase));
         dailyPurchaseRpo.save(dailyPurchase);
+
+        DailySale dailySale = new DailySale(1L, "abc Tech", 1, 1, 1, 1, 1, 1,
+                1, 1, 1, 1, 1, 1, 1, 1,
+                1, 1, 1, 1, "Orange", new Date());
+        DailySale dailySale2 = new DailySale(2L, "abc Tech", 2, 3, 4, 5, 6, 7,
+                8, 9, 10, 11, 12, 13, 14, 15,
+                16, 17, 18, 19, "Apple", new Date());
+        DailySale dailySale3 = new DailySale(3L, "abc Tech", 2, 3, 4, 5, 6, 7,
+                8, 9, 10, 11, 12, 13, 14, 15,
+                16, 17, 18, 19, "Apple2", new Date());
+        dailySaleRepo.save(dailySale);
+        dailySaleRepo.save(dailySale2);
+        dailySaleRepo.save(dailySale3);
 
 
     }

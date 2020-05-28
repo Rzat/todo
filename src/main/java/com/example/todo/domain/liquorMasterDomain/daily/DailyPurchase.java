@@ -1,5 +1,7 @@
-package com.example.todo.domain.liquorMasterDomain;
+package com.example.todo.domain.liquorMasterDomain.daily;
 
+import com.example.todo.domain.liquorMasterDomain.Orders;
+import com.example.todo.domain.liquorMasterDomain.Size;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
