@@ -23,8 +23,8 @@ public class IssueStock {
     private Long id;
 
     private String purchaseCode;
-    private String purchaseFrom;
-    private String purchaseTo;
+    private String issueFrom;
+    private String issueTo;
     private Date date;
     private Size size;
     @OneToMany(mappedBy = "issueStock", cascade = CascadeType.ALL)

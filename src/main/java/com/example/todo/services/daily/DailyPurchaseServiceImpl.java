@@ -32,6 +32,7 @@ public class DailyPurchaseServiceImpl implements DailyPurchaseService {
     @Transactional
     @Override
     public void newSaveDailyPurchase(DailyPurchase purchase) {
+
         DailyPurchase dailyPurchase = new DailyPurchase();
         dailyPurchase.setSize(purchase.getSize());
         dailyPurchase.setPurchaseFrom(purchase.getPurchaseFrom());
@@ -43,7 +44,7 @@ public class DailyPurchaseServiceImpl implements DailyPurchaseService {
         addingLoop(purchase);
         dailyPurchaseRpo.save(dailyPurchase);
 
-
+//Setting Daily Sale Opening column
         for (Orders orders : purchase.getOrders()) {
             System.out.println(dailySaleRepo.findByShopNameAndBrandName(purchase.getPurchaseTo(), orders.getBrandName()));
             DailySale sale = dailySaleRepo.findByShopNameAndBrandName(purchase.getPurchaseTo(), orders.getBrandName());
