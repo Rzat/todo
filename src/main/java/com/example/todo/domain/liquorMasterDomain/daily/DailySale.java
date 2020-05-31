@@ -49,6 +49,10 @@ public class DailySale {
     private int amountPints;
     private int amountNips;
 
+    private int closingBalanceQuarts;
+    private int closingBalancePints;
+    private int closingBalanceNips;
+
     private String brandName;
 
     private Date date;

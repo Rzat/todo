@@ -25,7 +25,7 @@ public class DailySaleController {
 
     @PostMapping("/users/{username}/saveDailySale")
     public ResponseEntity<DailySale> saveDailySale(@PathVariable String username,
-                                                   @RequestBody DailySale dailySale) {
+                                                   @RequestBody List<DailySale> dailySale) {
         dailySaleService.saveDailySale(dailySale);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

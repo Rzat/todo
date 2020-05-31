@@ -110,13 +110,13 @@ public class DataLoad implements CommandLineRunner {
 
         DailySale dailySale = new DailySale(1L, "abc Tech", 1, 1, 1, 1, 1, 1,
                 1, 1, 1, 1, 1, 1, 1, 1,
-                1, 1, 1, 1, "Orange", new Date());
+                1, 1, 1, 1, 1, 1, 1, "Orange", new Date());
         DailySale dailySale2 = new DailySale(2L, "abc Tech", 2, 3, 4, 5, 6, 7,
                 8, 9, 10, 11, 12, 13, 14, 15,
-                16, 17, 18, 19, "Apple", new Date());
+                16, 17, 18, 19, 21, 20, 22, "Apple", new Date());
         DailySale dailySale3 = new DailySale(3L, "abc Tech", 2, 3, 4, 5, 6, 7,
                 8, 9, 10, 11, 12, 13, 14, 15,
-                16, 17, 18, 19, "Apple2", new Date());
+                16, 17, 18, 19, 23, 24, 25, "Apple2", new Date());
         dailySaleRepo.save(dailySale);
         dailySaleRepo.save(dailySale2);
         dailySaleRepo.save(dailySale3);
