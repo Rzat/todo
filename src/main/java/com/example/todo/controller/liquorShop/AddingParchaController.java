@@ -32,4 +32,11 @@ public class AddingParchaController {
 
         return new ResponseEntity<List<AddingParcha>>(parchaService.findByShopName(shopName), HttpStatus.OK);
     }
+
+    @GetMapping("/users/{username}/findShopName/{shopName}/findBeerName/{brandName}")
+    public ResponseEntity<AddingParcha> findByShopNameAndBrandName(@PathVariable String shopName,
+                                                                         @PathVariable String brandName) {
+        return new ResponseEntity<AddingParcha>(parchaService.findByShopAndBrandName(shopName, brandName)
+                , HttpStatus.OK);
+    }
 }

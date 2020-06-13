@@ -1,6 +1,5 @@
 package com.example.todo.domain.liquorMasterDomain.daily;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,8 +16,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 @RequiredArgsConstructor
-public class DailySale {
-
+public class SaveDailySale {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,9 +47,9 @@ public class DailySale {
     private int amountPints;
     private int amountNips;
 
-   /* private int closingBalanceQuarts;
+    private int closingBalanceQuarts;
     private int closingBalancePints;
-    private int closingBalanceNips;*/
+    private int closingBalanceNips;
 
     private String brandName;
     private LocalDate date;

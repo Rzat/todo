@@ -22,7 +22,8 @@ public class DailySaleServiceImpl implements DailySaleService {
     public void saveDailySale(List<DailySale> dailySale) {
 
         for (DailySale sale : dailySale) {
-            logger.error("debugger at work");
+//         logger.error("debugger at work");
+            dailySaleRepo.save(sale);
         }
     }
 }

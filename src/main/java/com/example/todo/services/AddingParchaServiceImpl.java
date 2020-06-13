@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -33,6 +34,12 @@ public class AddingParchaServiceImpl implements AddingParchaService {
     public List<AddingParcha> findByShopName(String shopName) {
         return parchaRepo.findAllByShopName(shopName).stream().collect(Collectors.toList());
 
+    }
+
+    @Override
+    public AddingParcha findByShopAndBrandName(String shopName, String brandName) {
+        Optional<AddingParcha> findRateList = parchaRepo.findByShopNameAndBrandName(shopName, brandName);
+        return findRateList.get();
     }
 
     @Override

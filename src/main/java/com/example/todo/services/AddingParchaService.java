@@ -10,4 +10,6 @@ public interface AddingParchaService {
     AddingParcha saveParcha(AddingParcha parcha);
 
     List<AddingParcha> findByShopName(String shopName);
+
+    AddingParcha findByShopAndBrandName(String shopName, String brandName);
 }
