@@ -30,7 +30,8 @@ public class MasterBrandEntryServiceImpl implements MasterBrandEntryService {
 
             addingParcha.setId(masterBrandNameEntry.getId());
             addingParcha.setBrandName(masterBrandNameEntry.getBrandName());
-
+            //adding new column brand type in Adding Parcha
+            addingParcha.setBrandType(masterBrandNameEntry.getBrandType());
             parchaRepo.save(addingParcha);
             return masterBrandEntryRepo.save(masterBrandNameEntry);
         } else {

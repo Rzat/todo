@@ -64,6 +64,8 @@ public class DataLoad implements CommandLineRunner {
                 .brandName(mb.getBrandName())
                 .quarts(100)
                 //   .masterBrandNameEntry(mb)
+                .brandType(BrandType.DESI)
+                .groupNumber(4)
                 .build());
 
         parchaRepo.save(AddingParcha.builder()
@@ -75,6 +77,8 @@ public class DataLoad implements CommandLineRunner {
                 .brandName(mb.getBrandName())
                 .quarts(3500)
                 //   .masterBrandNameEntry(mb)
+                .brandType(BrandType.ENGLISH)
+                .groupNumber(5)
                 .build());
 
         parchaRepo.save(AddingParcha.builder()
@@ -86,6 +90,7 @@ public class DataLoad implements CommandLineRunner {
                 .brandName(mb2.getBrandName())
                 .quarts(10)
                 //   .masterBrandNameEntry(mb)
+                .brandType(BrandType.DESI)
                 .build());
 
         masterShopEntryRepo.save(MasterShopEntry.builder()
@@ -109,9 +114,9 @@ public class DataLoad implements CommandLineRunner {
         dailyPurchase.getOrders().add(new Orders("Apple", 123, 134, 156, dailyPurchase));
         dailyPurchaseRpo.save(dailyPurchase);
 
-        DailySale dailySale = new DailySale(1L, "abc Tech", 1, 1, 1, 1, 1, 1,
-                1, 1, 1, 1, 1, 1, 1, 1,
-                1, 1, 1, 1, "Orange", LocalDate.now());
+        DailySale dailySale = new DailySale(1L, "abc Tech", 12, 13, 4, 5, 6, 7,
+                6, 8, 9, 10, 1, 1, 12, 13,
+                14, 15, 16, 17, "Orange", LocalDate.now());
         DailySale dailySale2 = new DailySale(2L, "abc Tech", 2, 3, 4, 5, 6, 7,
                 8, 9, 10, 11, 12, 13, 14, 15,
                 16, 17, 18, 19, "Apple", LocalDate.now());

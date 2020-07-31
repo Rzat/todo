@@ -2,6 +2,7 @@ package com.example.todo.controller.liquorShop.daily;
 
 
 import com.example.todo.domain.liquorMasterDomain.daily.DailySale;
+import com.example.todo.domain.liquorMasterDomain.daily.SaveDailySale;
 import com.example.todo.repositories.daily.DailySaleRepo;
 import com.example.todo.services.daily.DailySaleService;
 import lombok.RequiredArgsConstructor;
@@ -24,8 +25,8 @@ public class DailySaleController {
     }
 
     @PostMapping("/users/{username}/saveDailySale")
-    public ResponseEntity<DailySale> saveDailySale(@PathVariable String username,
-                                                   @RequestBody List<DailySale> dailySale) {
+    public ResponseEntity<SaveDailySale> saveDailySale(@PathVariable String username,
+                                                       @RequestBody List<SaveDailySale> dailySale) {
         dailySaleService.saveDailySale(dailySale);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

@@ -1,9 +1,9 @@
 package com.example.todo.services.daily;
 
-import com.example.todo.domain.liquorMasterDomain.daily.DailySale;
+import com.example.todo.domain.liquorMasterDomain.daily.SaveDailySale;
 
 import java.util.List;
 
 public interface DailySaleService {
-    void saveDailySale(List<DailySale> dailySale);
+    void saveDailySale(List<SaveDailySale> dailySale);
 }

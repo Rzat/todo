@@ -26,8 +26,10 @@ public class AddingParcha {
     private int pints;
     private int nips;
     private String brandName;
+    private BrandType brandType;
+    private int groupNumber;
 
-   // @OneToOne(fetch = FetchType.EAGER)
-  //  private MasterBrandNameEntry masterBrandNameEntry;
+    // @OneToOne(fetch = FetchType.EAGER)
+    //  private MasterBrandNameEntry masterBrandNameEntry;
 
 }
