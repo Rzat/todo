@@ -3,11 +3,13 @@ package com.example.todo.bootstrap;
 import com.example.todo.domain.liquorMasterDomain.*;
 import com.example.todo.domain.liquorMasterDomain.daily.DailyPurchase;
 import com.example.todo.domain.liquorMasterDomain.daily.DailySale;
+import com.example.todo.domain.liquorMasterDomain.daily.SaveDailySale;
 import com.example.todo.repositories.AddingParchaRepo;
 import com.example.todo.repositories.DailyPurchaseRpo;
 import com.example.todo.repositories.MasterBrandEntryRepo;
 import com.example.todo.repositories.MasterShopEntryRepo;
 import com.example.todo.repositories.daily.DailySaleRepo;
+import com.example.todo.repositories.daily.SaveDailySaleRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -23,6 +25,7 @@ public class DataLoad implements CommandLineRunner {
     private final MasterShopEntryRepo masterShopEntryRepo;
     private final DailyPurchaseRpo dailyPurchaseRpo;
     private final DailySaleRepo dailySaleRepo;
+    private final SaveDailySaleRepo saveDailySaleRepo;
 
 
     @Override
@@ -44,7 +47,7 @@ public class DataLoad implements CommandLineRunner {
                 .build());
 
         MasterBrandNameEntry mb2 = masterBrandEntryRepo.save(MasterBrandNameEntry.builder()
-                .id(1L)
+                .id(2L)
                 .brandName("Orange")
                 .brandType(BrandType.ENGLISH)
                 .changedName("Iphone")
@@ -126,6 +129,33 @@ public class DataLoad implements CommandLineRunner {
         dailySaleRepo.save(dailySale);
         dailySaleRepo.save(dailySale2);
         //dailySaleRepo.save(dailySale3);
+
+        saveDailySaleRepo.save(SaveDailySale.builder()
+                .id(1L)
+                .amountNips(90)
+                .amountPints(260)
+                .amountQuarts(120)
+                .brandName("Orange")
+                .closingNips(40)
+                .closingPints(80)
+                .closingQuarts(50)
+                .date(LocalDate.of(2020, 7, 31))
+                .shopName("abc Tech")
+                .build());
+
+
+        saveDailySaleRepo.save(SaveDailySale.builder()
+                .id(2L)
+                .amountNips(90)
+                .amountPints(260)
+                .amountQuarts(120)
+                .brandName("Apple")
+                .closingNips(300)
+                .closingPints(200)
+                .closingQuarts(100)
+                .date(LocalDate.of(2020, 7, 31))
+                .shopName("abc Tech")
+                .build());
 
 
     }

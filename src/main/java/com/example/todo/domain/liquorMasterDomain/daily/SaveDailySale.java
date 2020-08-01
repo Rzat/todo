@@ -47,9 +47,9 @@ public class SaveDailySale {
     private int amountPints;
     private int amountNips;
 
-    private int closingQuarts;
-    private int closingPints;
-    private int closingNips;
+    private double closingQuarts;
+    private double closingPints;
+    private double closingNips;
 
     private String brandName;
     private LocalDate date;
