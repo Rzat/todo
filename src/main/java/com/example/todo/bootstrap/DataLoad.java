@@ -67,7 +67,7 @@ public class DataLoad implements CommandLineRunner {
                 .brandName(mb.getBrandName())
                 .quarts(100)
                 //   .masterBrandNameEntry(mb)
-                .brandType(BrandType.DESI)
+                .brandType(BrandType.ENGLISH)
                 .groupNumber(4)
                 .build());
 
@@ -93,7 +93,7 @@ public class DataLoad implements CommandLineRunner {
                 .brandName(mb2.getBrandName())
                 .quarts(10)
                 //   .masterBrandNameEntry(mb)
-                .brandType(BrandType.DESI)
+                .brandType(BrandType.ENGLISH)
                 .build());
 
         masterShopEntryRepo.save(MasterShopEntry.builder()

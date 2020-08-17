@@ -1,7 +1,6 @@
 package com.example.todo.controller.liquorShop.reports;
 
 
-import com.example.todo.domain.liquorMasterDomain.reports.StockPosition;
 import com.example.todo.services.report.StockPositionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -19,19 +18,11 @@ public class StockPositionController {
 
     private final StockPositionService stockPositionService;
 
-    @PostMapping("/users/{username}/getStockPosition")
-    public ResponseEntity<StockPosition> getStockPosition2(@PathVariable String username, @RequestBody StockPosition stockPosition) {
-        System.out.println("inside get stock position" + stockPosition);
-        return new ResponseEntity<StockPosition>(HttpStatus.OK);
-    }
-
-
     @GetMapping("/users/{username}/getStockPositionByShopName/{shopName}/{type}/{packagingType}")
     public ResponseEntity<List> getStockPositionByShopName(@PathVariable String username, @PathVariable String shopName,
                                                            @PathVariable String type, @PathVariable String packagingType,
                                                            @RequestParam("localDate")
                                                            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate localDate) {
-        //stockPositionService.findByShopNameAndDate(shopName, localDate, type, packagingType);
         return new ResponseEntity<List>(stockPositionService.findByShopNameAndDate(shopName, localDate, type, packagingType), HttpStatus.OK);
     }
 
