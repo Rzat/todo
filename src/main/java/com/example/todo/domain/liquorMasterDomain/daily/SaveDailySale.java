@@ -54,4 +54,8 @@ public class SaveDailySale {
     private String brandName;
     private LocalDate date;
 
+    private String cityName;
+    private String groupName;
+    private String districtName;
+
 }
