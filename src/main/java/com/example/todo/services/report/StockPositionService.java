@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface StockPositionService {
     List<SaveDailySale> findByShopNameAndDate(String shopName, LocalDate date, String type, String packagingType);
+
+    List findStockByCity(String cityName, LocalDate date, String type, String packagingType);
 }

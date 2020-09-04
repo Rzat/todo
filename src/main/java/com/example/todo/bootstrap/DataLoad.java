@@ -139,6 +139,8 @@ public class DataLoad implements CommandLineRunner {
                 .closingNips(40)
                 .closingPints(80)
                 .closingQuarts(50)
+                .cityName("Hisar")
+                .districtName("Hisr")
                 .date(LocalDate.of(2020, 7, 31))
                 .shopName("abc Tech")
                 .build());
@@ -153,6 +155,8 @@ public class DataLoad implements CommandLineRunner {
                 .closingNips(300)
                 .closingPints(200)
                 .closingQuarts(100)
+                .cityName("Hisar")
+                .districtName("Hisr")
                 .date(LocalDate.of(2020, 7, 31))
                 .shopName("abc Tech")
                 .build());

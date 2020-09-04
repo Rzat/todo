@@ -27,10 +27,12 @@ public class StockPositionController {
     }
 
     @GetMapping("/users/{username}/getStockPositionByCityName/{cityName}/{type}/{packagingType}")
-    public ResponseEntity<String> getStockPositionByCityName(@PathVariable String username, @PathVariable String cityName,
-                                                             @PathVariable String type, @PathVariable String packagingType) {
+    public ResponseEntity<List> getStockPositionByCityName(@PathVariable String username, @PathVariable String cityName,
+                                                           @PathVariable String type, @PathVariable String packagingType,
+                                                           @RequestParam("localDate")
+                                                           @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate localDate) {
         System.out.println("inside get stock by city position" + cityName + "::" + type + "::" + packagingType);
-        return new ResponseEntity<String>(HttpStatus.OK);
+        return new ResponseEntity<List>(stockPositionService.findStockByCity(cityName, localDate, type, packagingType), HttpStatus.OK);
     }
 
     @GetMapping("/users/{username}/getStockPositionByGroupName/{GroupName}/{type}/{packagingType}")

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.text.DecimalFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -26,12 +27,14 @@ public class StockPositionServiceImpl implements StockPositionService {
 
     DecimalFormat df = new DecimalFormat("#.###");
 
+
     @Override
     public List<SaveDailySale> findByShopNameAndDate(String shopName, LocalDate date, String type, String packagingType) {
         System.out.println("Shop Name::" + shopName + "Local date is::" + date);
         List<SaveDailySale> saveDailySaleList = saveDailySaleRepo.findAllByShopNameAndDate(shopName, date);
         for (SaveDailySale sale : saveDailySaleList) {
             MasterBrandNameEntry masterBrandName = (masterBrandEntryRepo.findByBrandName(sale.getBrandName()));
+
             List<AddingParcha> selectShop = parchaRepo.findAllByShopName(shopName);
             for (AddingParcha shop : selectShop) {
                 if (type.equalsIgnoreCase("E")) {
@@ -92,5 +95,56 @@ public class StockPositionServiceImpl implements StockPositionService {
         sale.setClosingPints(Double.parseDouble(df.format(setClosingPints)));
         sale.setClosingNips(Double.parseDouble(df.format(setClosingNips)));
 
+    }
+
+    private SaveDailySale getCaseStock2(SaveDailySale sale, MasterBrandNameEntry masterBrandName) {
+        List<SaveDailySale> sales = new ArrayList<>();
+        int packing1 = masterBrandName.getPacking1();
+        int packing2 = masterBrandName.getPacking2();
+        int packing3 = masterBrandName.getPacking3();
+
+        double qCB = sale.getClosingQuarts();
+        double pCB = sale.getClosingPints();
+        double nCB = sale.getClosingNips();
+
+        double setClosingQuarts = (qCB) / packing1;
+        double setClosingPints = (pCB) / packing2;
+        double setClosingNips = (nCB) / packing3;
+
+        sale.setClosingQuarts(Double.parseDouble(df.format(setClosingQuarts)));
+        sale.setClosingPints(Double.parseDouble(df.format(setClosingPints)));
+        sale.setClosingNips(Double.parseDouble(df.format(setClosingNips)));
+
+        return sale;
+    }
+
+    @Override
+    public List findStockByCity(String cityName, LocalDate localDate, String type, String packagingType) {
+        List<SaveDailySale> findAllByCity = saveDailySaleRepo.findAllByCityNameAndDate(cityName, localDate);
+        List<SaveDailySale> returnList = new ArrayList<>();
+        for (SaveDailySale sale : findAllByCity) {
+            MasterBrandNameEntry masterBrandName = (masterBrandEntryRepo.findByBrandName(sale.getBrandName()));
+
+            String brandName = sale.getBrandName();
+            String shopName = sale.getShopName();
+            AddingParcha selectBrandType = parchaRepo.findByBrandNameAndShopName(brandName, shopName);
+
+            if (selectBrandType.getBrandType().equals(BrandType.ENGLISH) && type.equalsIgnoreCase("E")) {
+                if (packagingType.equalsIgnoreCase("C")) {
+                    returnList.add(getCaseStock2(sale, masterBrandName));
+                } else if ((packagingType.equalsIgnoreCase("B"))) {
+                    System.out.println("inside B");
+                    returnList.add(sale);
+                }
+            } else if (type.equalsIgnoreCase("A")) {
+                if (packagingType.equalsIgnoreCase("C")) {
+                    returnList.add(getCaseStock2(sale, masterBrandName));
+                } else if ((packagingType.equalsIgnoreCase("B"))) {
+                    return findAllByCity;
+                }
+            }
+
+        }
+        return returnList;
     }
 }

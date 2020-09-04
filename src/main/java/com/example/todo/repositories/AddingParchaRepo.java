@@ -7,9 +7,13 @@ import java.util.List;
 import java.util.Optional;
 
 public interface AddingParchaRepo extends JpaRepository<AddingParcha, Long> {
-    Optional<AddingParcha> findByShopName(String purchaseFrom);
+    //Optional<AddingParcha> findByShopName(String purchaseFrom);
 
     List<AddingParcha> findAllByShopName(String purchaseFrom);
 
     Optional<AddingParcha> findByShopNameAndBrandName(String shopName, String brandName);
+
+    AddingParcha findByShopName(String purchaseFrom);
+
+    AddingParcha findByBrandNameAndShopName(String brandName, String shopName);
 }

@@ -7,5 +7,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface SaveDailySaleRepo extends JpaRepository<SaveDailySale, Long> {
-   List< SaveDailySale> findAllByShopNameAndDate(String shopName, LocalDate date);
+    List<SaveDailySale> findAllByShopNameAndDate(String shopName, LocalDate date);
+
+    List<SaveDailySale> findAllByCityNameAndDate(String cityName, LocalDate date);
 }
