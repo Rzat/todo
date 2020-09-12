@@ -23,7 +23,7 @@ public class StockPositionController {
                                                            @PathVariable String type, @PathVariable String packagingType,
                                                            @RequestParam("localDate")
                                                            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate localDate) {
-        return new ResponseEntity<List>(stockPositionService.findByShopNameAndDate(shopName, localDate, type, packagingType), HttpStatus.OK);
+        return new ResponseEntity<List>(stockPositionService.findByShopName(shopName, localDate, type, packagingType), HttpStatus.OK);
     }
 
     @GetMapping("/users/{username}/getStockPositionByCityName/{cityName}/{type}/{packagingType}")
@@ -31,7 +31,6 @@ public class StockPositionController {
                                                            @PathVariable String type, @PathVariable String packagingType,
                                                            @RequestParam("localDate")
                                                            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate localDate) {
-        System.out.println("inside get stock by city position" + cityName + "::" + type + "::" + packagingType);
         return new ResponseEntity<List>(stockPositionService.findStockByCity(cityName, localDate, type, packagingType), HttpStatus.OK);
     }
 
@@ -40,6 +39,14 @@ public class StockPositionController {
                                                               @PathVariable String type, @PathVariable String packagingType) {
         System.out.println("inside get stock position:: " + GroupName + ":: packagin type:: " + packagingType);
         return new ResponseEntity<String>(HttpStatus.OK);
+    }
+
+    @GetMapping("/users/{username}/getStockPositionByDistrictName/{districtName}/{type}/{packagingType}")
+    public ResponseEntity<List> getStockPositionByDistrict(@PathVariable String username, @PathVariable String districtName,
+                                                           @PathVariable String type, @PathVariable String packagingType,
+                                                           @RequestParam("localDate")
+                                                           @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate localDate) {
+        return new ResponseEntity<List>(stockPositionService.findByDistrict(districtName, localDate, type, packagingType), HttpStatus.OK);
     }
 
 }

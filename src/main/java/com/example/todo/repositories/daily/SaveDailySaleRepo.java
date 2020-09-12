@@ -10,4 +10,6 @@ public interface SaveDailySaleRepo extends JpaRepository<SaveDailySale, Long> {
     List<SaveDailySale> findAllByShopNameAndDate(String shopName, LocalDate date);
 
     List<SaveDailySale> findAllByCityNameAndDate(String cityName, LocalDate date);
+
+    List<SaveDailySale> findAllByDistrictNameAndDate(String districtName, LocalDate date);
 }
