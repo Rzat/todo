@@ -29,4 +29,29 @@ public class PurchaseReportController {
         System.out.println("localdate from:" + from + " : local date to: " + to);
         return new ResponseEntity<List>(reportService.findByShopName(shopName, from, to, type, packagingType), HttpStatus.OK);
     }
+
+    @GetMapping("/users/{username}/getPurchaseReportByCityName/{cityName}/{type}/{packagingType}")
+    public ResponseEntity<List> getStockPositionByCityName(@PathVariable String username, @PathVariable String cityName,
+                                                           @PathVariable String type, @PathVariable String packagingType,
+                                                           @RequestParam("localDateFrom")
+                                                           @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate from,
+                                                           @RequestParam("localDateTo")
+                                                           @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+                                                                   LocalDate to) {
+        System.out.println("localdate from:" + from + " : local date to: " + to);
+        return new ResponseEntity<List>(reportService.findByCityName(cityName, from, to, type, packagingType), HttpStatus.OK);
+    }
+
+
+    @GetMapping("/users/{username}/getPurchaseReportByDistrictName/{districtName}/{type}/{packagingType}")
+    public ResponseEntity<List> getPurchaseReportByDistrictName(@PathVariable String username, @PathVariable String districtName,
+                                                                @PathVariable String type, @PathVariable String packagingType,
+                                                                @RequestParam("localDateFrom")
+                                                                @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate from,
+                                                                @RequestParam("localDateTo")
+                                                                @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+                                                                        LocalDate to) {
+        System.out.println("localdate from:" + from + " : local date to: " + to);
+        return new ResponseEntity<List>(reportService.findByDistrictName(districtName, from, to, type, packagingType), HttpStatus.OK);
+    }
 }

@@ -23,4 +23,20 @@ public class PurchaseReportServiceImpl implements PurchaseReportService {
         stockPosition.getBySaveDailySale(type, packagingType, dailySale, returnShopList);
         return returnShopList;
     }
+
+    @Override
+    public List findByCityName(String cityName, LocalDate from, LocalDate to, String type, String packagingType) {
+        List<SaveDailySale> dailySales = saveDailySaleRepo.getAllCityBetweenDates(cityName, from, to);
+        List<SaveDailySale> returnShopList = new ArrayList<>();
+        stockPosition.getBySaveDailySale(type, packagingType, dailySales, returnShopList);
+        return returnShopList;
+    }
+
+    @Override
+    public List findByDistrictName(String districtName, LocalDate from, LocalDate to, String type, String packagingType) {
+        List<SaveDailySale> dailySales = saveDailySaleRepo.getAllDistrictBetweenDates(districtName, from, to);
+        List<SaveDailySale> returnShopList = new ArrayList<>();
+        stockPosition.getBySaveDailySale(type, packagingType, dailySales, returnShopList);
+        return returnShopList;
+    }
 }

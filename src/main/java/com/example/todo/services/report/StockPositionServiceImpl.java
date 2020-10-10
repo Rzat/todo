@@ -82,16 +82,6 @@ public class StockPositionServiceImpl implements StockPositionService {
         }
     }
 
-    private List listGetStock(String packagingType, List<SaveDailySale> returnList, SaveDailySale sale, MasterBrandNameEntry masterBrandName) {
-        if (packagingType.equalsIgnoreCase("C")) {
-            returnList.add(getCaseStock2(sale, masterBrandName));
-        } else if ((packagingType.equalsIgnoreCase("B"))) {
-            System.out.println("inside B");
-            returnList.add(sale);
-        }
-        return returnList;
-    }
-
 
     public void getBySaveDailySale(String type, String packagingType, List<SaveDailySale> findAllByCity, List<SaveDailySale> returnList) {
         for (SaveDailySale sale : findAllByCity) {
@@ -114,28 +104,5 @@ public class StockPositionServiceImpl implements StockPositionService {
         }
     }
 
-
-    public List listGetBySaveDailySale(String type, String packagingType, List<SaveDailySale> findAllByCity, List<SaveDailySale> returnList) {
-        List newList = new ArrayList();
-        for (SaveDailySale sale : findAllByCity) {
-            MasterBrandNameEntry masterBrandName = (masterBrandEntryRepo.findByBrandName(sale.getBrandName()));
-
-            String brandName = sale.getBrandName();
-            String shopName = sale.getShopName();
-            AddingParcha selectBrandType = parchaRepo.findByBrandNameAndShopName(brandName, shopName);
-
-            if (selectBrandType.getBrandType().equals(BrandType.ENGLISH) && type.equalsIgnoreCase("E")) {
-                newList.add(listGetStock(packagingType, returnList, sale, masterBrandName));
-            } else if (selectBrandType.getBrandType().equals(BrandType.DESI) && type.equalsIgnoreCase("D")) {
-                newList.add(listGetStock(packagingType, returnList, sale, masterBrandName));
-            } else if (selectBrandType.getBrandType().equals(BrandType.BEER) && type.equalsIgnoreCase("D")) {
-                newList.add(listGetStock(packagingType, returnList, sale, masterBrandName));
-            } else if (type.equalsIgnoreCase("A")) {
-                newList.add(listGetStock(packagingType, returnList, sale, masterBrandName));
-            }
-        }
-
-        return newList;
-    }
 
 }

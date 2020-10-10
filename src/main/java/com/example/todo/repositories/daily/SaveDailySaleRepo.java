@@ -17,7 +17,15 @@ public interface SaveDailySaleRepo extends JpaRepository<SaveDailySale, Long> {
 
     @Query(value = "SELECT e FROM SaveDailySale e WHERE e.shopName=:shopName AND e.date BETWEEN :startDate AND :endDate")
     List<SaveDailySale> getAllShopBetweenDates(@Param("shopName") String shopName, @Param("startDate") LocalDate startDate,
-                                           @Param("endDate") LocalDate endDate);
+                                               @Param("endDate") LocalDate endDate);
+
+    @Query(value = "SELECT e FROM SaveDailySale e WHERE e.cityName=:cityName AND e.date BETWEEN :startDate AND :endDate")
+    List<SaveDailySale> getAllCityBetweenDates(@Param("cityName") String cityName, @Param("startDate") LocalDate startDate,
+                                               @Param("endDate") LocalDate endDate);
+
+    @Query(value = "SELECT e FROM SaveDailySale e WHERE e.districtName=:districtName AND e.date BETWEEN :startDate AND :endDate")
+    List<SaveDailySale> getAllDistrictBetweenDates(@Param("districtName") String districtName, @Param("startDate") LocalDate startDate,
+                                                   @Param("endDate") LocalDate endDate);
 
 
 }
