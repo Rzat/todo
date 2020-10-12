@@ -11,16 +11,17 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class PurchaseReportServiceImpl implements PurchaseReportService {
+public class SaleReportServiceImpl implements SaleReportService {
 
     private final SaveDailySaleRepo saveDailySaleRepo;
     private final StockPositionServiceImpl stockPosition;
+    String identifier = "Sales_Report";
 
     @Override
-    public List findByShopName(String shopName, LocalDate from, LocalDate to, String type, String packagingType) {
+    public List findByShopName(String shopName, LocalDate from, LocalDate to, String type, String packagingType, String identifier) {
         List<SaveDailySale> dailySale = saveDailySaleRepo.getAllShopBetweenDates(shopName, from, to);
         List<SaveDailySale> returnShopList = new ArrayList<>();
-        stockPosition.getBySaveDailySale(type, packagingType, dailySale, returnShopList);
+        stockPosition.getBySaveDailySale(type, packagingType, dailySale, returnShopList, identifier);
         return returnShopList;
     }
 
@@ -28,7 +29,7 @@ public class PurchaseReportServiceImpl implements PurchaseReportService {
     public List findByCityName(String cityName, LocalDate from, LocalDate to, String type, String packagingType) {
         List<SaveDailySale> dailySales = saveDailySaleRepo.getAllCityBetweenDates(cityName, from, to);
         List<SaveDailySale> returnShopList = new ArrayList<>();
-        stockPosition.getBySaveDailySale(type, packagingType, dailySales, returnShopList);
+        stockPosition.getBySaveDailySale(type, packagingType, dailySales, returnShopList, identifier);
         return returnShopList;
     }
 
@@ -36,7 +37,7 @@ public class PurchaseReportServiceImpl implements PurchaseReportService {
     public List findByDistrictName(String districtName, LocalDate from, LocalDate to, String type, String packagingType) {
         List<SaveDailySale> dailySales = saveDailySaleRepo.getAllDistrictBetweenDates(districtName, from, to);
         List<SaveDailySale> returnShopList = new ArrayList<>();
-        stockPosition.getBySaveDailySale(type, packagingType, dailySales, returnShopList);
+        stockPosition.getBySaveDailySale(type, packagingType, dailySales, returnShopList, identifier);
         return returnShopList;
     }
 }

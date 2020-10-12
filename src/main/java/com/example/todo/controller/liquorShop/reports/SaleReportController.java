@@ -1,6 +1,6 @@
 package com.example.todo.controller.liquorShop.reports;
 
-import com.example.todo.services.report.PurchaseReportService;
+import com.example.todo.services.report.SaleReportService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -13,9 +13,10 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:4200")
-public class PurchaseReportController {
+public class SaleReportController {
 
-    private final PurchaseReportService reportService;
+    private final SaleReportService reportService;
+    private final String identifier = "Sales_Report";
 
 
     @GetMapping("/users/{username}/getPurchaseReportByShopName/{shopName}/{type}/{packagingType}")
@@ -27,7 +28,7 @@ public class PurchaseReportController {
                                                            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
                                                                    LocalDate to) {
         System.out.println("localdate from:" + from + " : local date to: " + to);
-        return new ResponseEntity<List>(reportService.findByShopName(shopName, from, to, type, packagingType), HttpStatus.OK);
+        return new ResponseEntity<List>(reportService.findByShopName(shopName, from, to, type, packagingType,identifier), HttpStatus.OK);
     }
 
     @GetMapping("/users/{username}/getPurchaseReportByCityName/{cityName}/{type}/{packagingType}")
